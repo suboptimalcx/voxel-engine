@@ -10,6 +10,7 @@
 #include "shader.h"
 #include "camera.h"
 #include "texture.h"
+#include "chunk.h"
 
 #include <iostream>
 

@@ -15,6 +15,7 @@ ADD_EXECUTABLE(voxel-engine
     src/stb_image.h
     src/shader.h
     src/camera.h
+    src/chunk.cpp
 )
 
 target_link_libraries(voxel-engine PRIVATE glfw glad::glad glm::glm)
