@@ -1,6 +1,6 @@
 # Voxel Engine
 
-A really basic voxel engine i wanted to make to get better at cpp and understand 3d graphics better. not much else to say.
+A really basic voxel engine i wanted to make to get better at cpp and understand 3d graphics. not much else to say.
 
 ## Features
 
