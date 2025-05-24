@@ -14,11 +14,13 @@ enum BlockType {
 
 class Chunk {
 public:
-    Chunk();
+    Chunk(int xcoord, int ycoord, int zcoord);
     ~Chunk();
     void draw(Shader mainShader);
     BlockType getBlock(int x, int y, int z) const;
 
 private:
-    BlockType blocks[16][16][16];
+    static const unsigned int CHUNK_SIZE = 16;
+    BlockType blocks[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE];
+    int xCoord, yCoord, zCoord;
 };

@@ -1,7 +1,7 @@
 #include "application.h"
 
 //-------------------------------------------------------------------------------------
-Application::Application() 
+Application::Application()
 {
     openglInit();
     mainShader.shaderInit("../../src/shaders/3.3.shader.vs", "../../src/shaders/3.3.shader.fs");
@@ -121,8 +121,11 @@ void Application::run(){
         // rendering
         // ---------
         glBindVertexArray(VAO);
-        Chunk chunk1;
-        chunk1.draw(mainShader);
+        //! chunks still created when not drawn
+        Chunk chunk1(0,0,0); 
+        Chunk chunk2(16,0,0);
+        chunk1.draw(mainShader); 
+        chunk2.draw(mainShader); 
         // glfw: swap buffers and poll IO events 
         // -------------------------------------
         glfwSwapBuffers(window);
