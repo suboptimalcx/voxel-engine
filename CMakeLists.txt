@@ -17,7 +17,7 @@ ADD_EXECUTABLE(voxel-engine
     src/camera.h
     src/chunk.cpp
     src/world.cpp
-   # src/FastNoiseLite.h
+    src/FastNoiseLite.h
 )
 
 target_link_libraries(voxel-engine PRIVATE glfw glad::glad glm::glm)

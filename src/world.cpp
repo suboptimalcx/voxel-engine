@@ -25,7 +25,7 @@ void World::draw(const glm::vec3& cameraPos, Shader mainShader) {
                 chunk.yCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f,
                 chunk.zCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f
             );
-
+            
             float distance = glm::distance(cameraPos, chunkCenter);
 
             if (distance <= RENDER_DISTANCE * Chunk::CHUNK_SIZE) {
@@ -33,5 +33,27 @@ void World::draw(const glm::vec3& cameraPos, Shader mainShader) {
             }
         }
     }
+    unloadChunks(cameraPos, cameraChunkPos);
 }
 //-------------------------------------------------------------------------------------
+void World::unloadChunks(const glm::vec3& cameraPos, glm::ivec3 cameraChunkPos) {
+    std::vector<glm::ivec3> chunksToRemove;
+
+    for (const auto& pair : chunks) {
+        const glm::ivec3& coord = pair.first;
+        glm::vec3 chunkCenter = glm::vec3(
+            coord.x * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f,
+            coord.y * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f,
+            coord.z * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f
+        );
+
+        float distance = glm::distance(cameraPos, chunkCenter);
+        if (distance > UNLOAD_DISTANCE * Chunk::CHUNK_SIZE) {
+            chunksToRemove.push_back(coord);
+        }
+    }
+
+    for (const glm::ivec3& coord : chunksToRemove) {
+        chunks.erase(coord);
+    }
+}

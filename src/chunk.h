@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "shader.h"
+#include "FastNoiseLite.h"
 
 enum BlockType {
     Air,
@@ -18,6 +19,7 @@ public:
     static const int CHUNK_SIZE = 16;
     BlockType blocks[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE];
     int xCoord, yCoord, zCoord;
+    FastNoiseLite noise;
 
     //functions
     Chunk(int xcoord, int ycoord, int zcoord);
