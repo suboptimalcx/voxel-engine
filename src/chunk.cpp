@@ -19,24 +19,25 @@ BlockType Chunk::getBlock(int x, int y, int z) const {
         return Air; 
     return blocks[x][y][z];
 }
-//!hard coded for a single chunk 
-//todo: FIX!!!!! 
 //-------------------------------------------------------------------------------------
-void Chunk::draw(Shader mainShader) { //chunks have no way of knowing if they inretcept, create a mesh class maybe to fix (also maybe implement face culling?)
+void Chunk::draw(Shader mainShader) const {
     for (int x = 0; x < CHUNK_SIZE; x++) {
         for (int y = 0; y < CHUNK_SIZE; y++) {
             for (int z = 0; z < CHUNK_SIZE; z++) {
-                bool isExposed = 
-                    getBlock(x+1, y, z) == Air ||
-                    getBlock(x-1, y, z) == Air ||
-                    getBlock(x, y+1, z) == Air ||
-                    getBlock(x, y-1, z) == Air ||
-                    getBlock(x, y, z+1) == Air ||
-                    getBlock(x, y, z-1) == Air;
-                if (!isExposed) continue;
+                if (!(getBlock(x+1,y,z)==Air ||
+                      getBlock(x-1,y,z)==Air ||
+                      getBlock(x,y+1,z)==Air ||
+                      getBlock(x,y-1,z)==Air ||
+                      getBlock(x,y,z+1)==Air ||
+                      getBlock(x,y,z-1)==Air))
+                    continue;
 
-                glm::mat4 model = glm::mat4(1.0f);
-                model = glm::translate(model, glm::vec3(x + xCoord, y + yCoord , z + zCoord));
+                glm::vec3 worldPos = glm::vec3(
+                    xCoord * CHUNK_SIZE + x,
+                    yCoord * CHUNK_SIZE + y,
+                    zCoord * CHUNK_SIZE + z
+                );
+                glm::mat4 model = glm::translate(glm::mat4(1.0f), worldPos);
                 mainShader.setMat4("model", model);
                 glDrawArrays(GL_TRIANGLES, 0, 36);
             }

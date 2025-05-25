@@ -11,6 +11,7 @@
 #include "camera.h"
 #include "texture.h"
 #include "chunk.h"
+#include "world.h"
 
 #include <iostream>
 

@@ -121,11 +121,12 @@ void Application::run(){
         // rendering
         // ---------
         glBindVertexArray(VAO);
-        //! chunks still created when not drawn
-        Chunk chunk1(0,0,0); 
-        Chunk chunk2(16,0,0);
-        chunk1.draw(mainShader); 
-        chunk2.draw(mainShader); 
+
+        // Chunk chunk1(0,-16,0); 
+        // chunk1.draw(mainShader); 
+        World world;
+        world.draw(camera.Position, mainShader);
+
         // glfw: swap buffers and poll IO events 
         // -------------------------------------
         glfwSwapBuffers(window);
