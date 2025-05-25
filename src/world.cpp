@@ -1,30 +1,36 @@
 #include "world.h"
 
 //-------------------------------------------------------------------------------------
-World::World() {
-    for (int x = -WORLD_SIZE/2; x < WORLD_SIZE/2; x++) {
-        for (int z = -WORLD_SIZE/2; z < WORLD_SIZE/2; z++) {
-            chunks.emplace_back(x, -1, z);
-        }
-    }
-}
+World::World() {}
 //-------------------------------------------------------------------------------------
 World::~World(){}
 //-------------------------------------------------------------------------------------
-const void World::draw(const glm::vec3& cameraPos, Shader mainShader) {
-    for (const Chunk& chunk : chunks) {
-        // center pos
-        // ----------
-        glm::vec3 chunkCenter = glm::vec3(
-            chunk.xCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f,
-            chunk.yCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f,
-            chunk.zCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f
-        );
+void World::draw(const glm::vec3& cameraPos, Shader mainShader) {
+    glm::ivec3 cameraChunkPos = glm::floor(cameraPos / (float)Chunk::CHUNK_SIZE);
 
-        float distance = glm::distance(cameraPos, chunkCenter);
+    for (int x = -RENDER_DISTANCE; x <= RENDER_DISTANCE; x++) {
+        for (int z = -RENDER_DISTANCE; z <= RENDER_DISTANCE; z++) {
+            glm::ivec3 chunkCoord = glm::ivec3(cameraChunkPos.x + x, -1, cameraChunkPos.z + z);
 
-        if (distance <= RENDER_DISTANCE * Chunk::CHUNK_SIZE) {
-            chunk.draw(mainShader);
+            if (chunks.find(chunkCoord) == chunks.end()) {
+                // insert new chunk only if it doesnt exist
+                // ----------------------------------------------------
+                chunks.emplace(chunkCoord, Chunk(chunkCoord.x, chunkCoord.y, chunkCoord.z));
+            }
+
+            Chunk& chunk = chunks.at(chunkCoord);
+
+            glm::vec3 chunkCenter = glm::vec3(
+                chunk.xCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f,
+                chunk.yCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f,
+                chunk.zCoord * Chunk::CHUNK_SIZE + Chunk::CHUNK_SIZE / 2.0f
+            );
+
+            float distance = glm::distance(cameraPos, chunkCenter);
+
+            if (distance <= RENDER_DISTANCE * Chunk::CHUNK_SIZE) {
+                chunk.draw(mainShader);
+            }
         }
     }
 }
