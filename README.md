@@ -26,7 +26,7 @@ git clone https://github.com/suboptimalcx/voxel-engine.git
 
 $env:VCPKG_ROOT="C:\path\to\vcpkg"
 $env:PATH="$env:VCPKG_ROOT;$env:PATH"
-#if not already installed -> vcpkg install glm glad glfw
+#if not already installed -> vcpkg install glm glad glfw3
 
 # you could also type in: "vcpkg integrate install" and use the -DCMAKE_TOOLCHAIN_FILE while using CMake :)
 ```
