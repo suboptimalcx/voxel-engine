@@ -8,7 +8,7 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
-#include "chunk.h"
+#include "world/chunk.h"
 
 //crazy hash function
 struct ivec3_hash {

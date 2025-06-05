@@ -1,4 +1,4 @@
-#include "application.h"
+#include "core/application.h"
 
 //-------------------------------------------------------------------------------------
 Application::Application()
@@ -45,7 +45,7 @@ void Application::openglInit(){
         throw std::runtime_error("Failed to initialize GLAD"); 
     }
 
-    glEnable(GL_DEPTH_TEST);  
+    glEnable(GL_DEPTH_TEST); 
 }
 //-------------------------------------------------------------------------------------
 void Application::graphicResourcesInit(){

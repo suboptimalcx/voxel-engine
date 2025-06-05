@@ -5,8 +5,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "shader.h"
-#include "FastNoiseLite.h"
+#include "graphics/shader.h"
+#include "external/FastNoiseLite.h"
 
 enum BlockType {
     Air,

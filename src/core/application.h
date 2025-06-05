@@ -7,11 +7,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "shader.h"
-#include "camera.h"
-#include "texture.h"
-#include "chunk.h"
-#include "world.h"
+#include "graphics/shader.h"
+#include "world/camera.h"
+#include "graphics/texture.h"
+#include "world/chunk.h"
+#include "world/world.h"
 
 #include <iostream>
 
