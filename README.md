@@ -10,9 +10,10 @@ A really basic, unoptimized side project voxel engine i wanted to make to get be
 - chunk loading/unloading
 
 TODO:
-- add face culling
 - add diffrent blocks maybe
 - make a more interesting project
+- frustum culling
+- add greedy meshing, just optimize rendering in general
 
 ## Dependencies
 - [vcpkg](https://github.com/microsoft/vcpkg)

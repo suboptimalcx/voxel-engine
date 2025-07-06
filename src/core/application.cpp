@@ -45,6 +45,7 @@ void Application::openglInit(){
         throw std::runtime_error("Failed to initialize GLAD"); 
     }
 
+    glEnable(GL_CULL_FACE); 
     glEnable(GL_DEPTH_TEST); 
 }
 //-------------------------------------------------------------------------------------
@@ -124,7 +125,6 @@ void Application::run(){
 
         // Chunk chunk1(0,-16,0); 
         // chunk1.draw(mainShader); 
-        World world;
         world.draw(camera.Position, mainShader);
 
         // glfw: swap buffers and poll IO events 
