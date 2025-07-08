@@ -33,8 +33,10 @@ $env:PATH="$env:VCPKG_ROOT;$env:PATH"
 ```
 then just build it using cmake
 
-## cursed demo gif
-![Voxel Engine Demo](assets/gif/ababab.gif)
+## cursed demo gifs
+![traversing through the world](assets/gif/crazygif2.gif)
+
+![crazy spinning cubes](assets/gif/ababab.gif)
 ---
 
 ## Extra
